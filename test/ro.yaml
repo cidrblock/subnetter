@@ -1,0 +1,42 @@
+name: "Regional Office, {{site}}"
+root: 10.2.68.0/23
+site: Dallas
+spec:
+    - name: "{{site}}-Data-VLAN200-network"
+      type: subnet
+    - name: "{{site}}-Container"
+      type: container
+      children:
+        - name: "{{site}}-Voice-VLAN800-network"
+          type: subnet
+        - name: "{{site}}-Container"
+          type: container
+          children:
+            - name: "{{site}}-Container"
+              type: container
+              children:
+                - name: "{{site}}-Network-container"
+                  type: container
+                  children:
+                    - name: "{{site}}-Network Admin"
+                      type: container
+                      children:
+                        - name: "{{site}}-SwitchAdmin-VLAN2"
+                          type: subnet
+                        - name: "{{site}}-Loopbacks"
+                          type: subnet
+                    - name: "{{site}}-P2P"
+                      type: container
+                      children:
+                        - name: "{{site}}-Local-Internet"
+                          type: subnet
+                        - name: "{{site}}-Vendor Router"
+                          type: subnet
+                        - name: "{{site}}-SRE Module"
+                          type: subnet
+                        - name: "{{site}}-unused"
+                          type: container
+                - name: "{{site}}-Container-unused"
+                  type: container
+            - name: "{{site}}-Container-unused"
+              type: container

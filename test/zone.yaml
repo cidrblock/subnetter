@@ -1,0 +1,468 @@
+name: "NA vDC"
+root: 10.74.0.0/15
+site1: iaddc1
+site2: chddc1
+spec:
+  - name: "zone1"
+    type: container
+    children:
+      - name: "{{site1}}-zone1-servers1.1"
+        type: subnet
+      - name: "{{site2}}-zone1-servers1.1"
+        type: subnet
+      - name: "{{site1}}-zone1-servers1.2"
+        type: subnet
+      - name: "{{site2}}-zone1-servers1.2"
+        type: subnet
+      - name: "{{site1}}-zone1-servers1.3"
+        type: subnet
+      - name: "{{site2}}-zone1-servers1.3"
+        type: subnet
+      - name: "{{site1}}-zone1-unused"
+        type: subnet
+      - name: "zone1-network"
+        type: container
+        children:
+          - name: "{{site1}} localvips"
+            type: subnet
+          - name: "{{site1}} network"
+            type: container
+          - name: "{{site2}} localvips"
+            type: subnet
+          - name: "{{site2}} network"
+            type: subnet
+
+  - name: "zone2"
+    type: container
+    children:
+      - name: "{{site1}}-zone2-servers1.1"
+        type: subnet
+      - name: "{{site2}}-zone2-servers1.1"
+        type: subnet
+      - name: "{{site1}}-zone2-servers1.2"
+        type: subnet
+      - name: "{{site2}}-zone2-servers1.2"
+        type: subnet
+      - name: "{{site1}}-zone2-servers1.3"
+        type: subnet
+      - name: "{{site2}}-zone2-servers1.3"
+        type: subnet
+      - name: "{{site1}}-zone2-unused"
+        type: subnet
+      - name: "zone2-network"
+        type: container
+        children:
+          - name: "{{site1}} localvips"
+            type: subnet
+          - name: "{{site1}} network"
+            type: container
+          - name: "{{site2}} localvips"
+            type: subnet
+          - name: "{{site2}} network"
+            type: subnet
+
+  - name: "zone3"
+    type: container
+    children:
+      - name: "{{site1}}-zone3-servers1.1"
+        type: subnet
+      - name: "{{site2}}-zone3-servers1.1"
+        type: subnet
+      - name: "{{site1}}-zone3-servers1.2"
+        type: subnet
+      - name: "{{site2}}-zone3-servers1.2"
+        type: subnet
+      - name: "{{site1}}-zone3-servers1.3"
+        type: subnet
+      - name: "{{site2}}-zone3-servers1.3"
+        type: subnet
+      - name: "{{site1}}-zone3-unused"
+        type: subnet
+      - name: "zone3-network"
+        type: container
+        children:
+          - name: "{{site1}} localvips"
+            type: subnet
+          - name: "{{site1}} network"
+            type: container
+          - name: "{{site2}} localvips"
+            type: subnet
+          - name: "{{site2}} network"
+            type: subnet
+
+  - name: "zone4"
+    type: container
+    children:
+      - name: "{{site1}}-zone4-servers1.1"
+        type: subnet
+      - name: "{{site2}}-zone4-servers1.1"
+        type: subnet
+      - name: "{{site1}}-zone4-servers1.2"
+        type: subnet
+      - name: "{{site2}}-zone4-servers1.2"
+        type: subnet
+      - name: "{{site1}}-zone4-servers1.3"
+        type: subnet
+      - name: "{{site2}}-zone4-servers1.3"
+        type: subnet
+      - name: "{{site1}}-zone4-unused"
+        type: subnet
+      - name: "zone4-network"
+        type: container
+        children:
+          - name: "{{site1}} localvips"
+            type: subnet
+          - name: "{{site1}} network"
+            type: container
+          - name: "{{site2}} localvips"
+            type: subnet
+          - name: "{{site2}} network"
+            type: subnet
+
+  - name: "zone5"
+    type: container
+    children:
+      - name: "{{site1}}-zone5-servers1.1"
+        type: subnet
+      - name: "{{site2}}-zone5-servers1.1"
+        type: subnet
+      - name: "{{site1}}-zone5-servers1.2"
+        type: subnet
+      - name: "{{site2}}-zone5-servers1.2"
+        type: subnet
+      - name: "{{site1}}-zone5-servers1.3"
+        type: subnet
+      - name: "{{site2}}-zone5-servers1.3"
+        type: subnet
+      - name: "{{site1}}-zone5-unused"
+        type: subnet
+      - name: "zone5-network"
+        type: container
+        children:
+          - name: "{{site1}} localvips"
+            type: subnet
+          - name: "{{site1}} network"
+            type: container
+          - name: "{{site2}} localvips"
+            type: subnet
+          - name: "{{site2}} network"
+            type: subnet
+
+  - name: "zone6"
+    type: container
+    children:
+      - name: "{{site1}}-zone6-servers1.1"
+        type: subnet
+      - name: "{{site2}}-zone6-servers1.1"
+        type: subnet
+      - name: "{{site1}}-zone6-servers1.2"
+        type: subnet
+      - name: "{{site2}}-zone6-servers1.2"
+        type: subnet
+      - name: "{{site1}}-zone6-servers1.3"
+        type: subnet
+      - name: "{{site2}}-zone6-servers1.3"
+        type: subnet
+      - name: "{{site1}}-zone6-unused"
+        type: subnet
+      - name: "zone6-network"
+        type: container
+        children:
+          - name: "{{site1}} localvips"
+            type: subnet
+          - name: "{{site1}} network"
+            type: container
+          - name: "{{site2}} localvips"
+            type: subnet
+          - name: "{{site2}} network"
+            type: subnet
+
+  - name: "zone7"
+    type: container
+    children:
+      - name: "{{site1}}-zone7-servers1.1"
+        type: subnet
+      - name: "{{site2}}-zone7-servers1.1"
+        type: subnet
+      - name: "{{site1}}-zone7-servers1.2"
+        type: subnet
+      - name: "{{site2}}-zone7-servers1.2"
+        type: subnet
+      - name: "{{site1}}-zone7-servers1.3"
+        type: subnet
+      - name: "{{site2}}-zone7-servers1.3"
+        type: subnet
+      - name: "{{site1}}-zone7-unused"
+        type: subnet
+      - name: "zone7-network"
+        type: container
+        children:
+          - name: "{{site1}} localvips"
+            type: subnet
+          - name: "{{site1}} network"
+            type: container
+          - name: "{{site2}} localvips"
+            type: subnet
+          - name: "{{site2}} network"
+            type: subnet
+
+  - name: "zone8"
+    type: container
+    children:
+      - name: "{{site1}}-zone8-servers1.1"
+        type: subnet
+      - name: "{{site2}}-zone8-servers1.1"
+        type: subnet
+      - name: "{{site1}}-zone8-servers1.2"
+        type: subnet
+      - name: "{{site2}}-zone8-servers1.2"
+        type: subnet
+      - name: "{{site1}}-zone8-servers1.3"
+        type: subnet
+      - name: "{{site2}}-zone8-servers1.3"
+        type: subnet
+      - name: "{{site1}}-zone8-unused"
+        type: subnet
+      - name: "zone8-network"
+        type: container
+        children:
+          - name: "{{site1}} localvips"
+            type: subnet
+          - name: "{{site1}} network"
+            type: container
+          - name: "{{site2}} localvips"
+            type: subnet
+          - name: "{{site2}} network"
+            type: subnet
+
+  - name: "zone9"
+    type: container
+    children:
+      - name: "{{site1}}-zone9-servers1.1"
+        type: subnet
+      - name: "{{site2}}-zone9-servers1.1"
+        type: subnet
+      - name: "{{site1}}-zone9-servers1.2"
+        type: subnet
+      - name: "{{site2}}-zone9-servers1.2"
+        type: subnet
+      - name: "{{site1}}-zone9-servers1.3"
+        type: subnet
+      - name: "{{site2}}-zone9-servers1.3"
+        type: subnet
+      - name: "{{site1}}-zone9-unused"
+        type: subnet
+      - name: "zone9-network"
+        type: container
+        children:
+          - name: "{{site1}} localvips"
+            type: subnet
+          - name: "{{site1}} network"
+            type: container
+          - name: "{{site2}} localvips"
+            type: subnet
+          - name: "{{site2}} network"
+            type: subnet
+
+  - name: "zone10"
+    type: container
+    children:
+      - name: "{{site1}}-zone10-servers1.1"
+        type: subnet
+      - name: "{{site2}}-zone10-servers1.1"
+        type: subnet
+      - name: "{{site1}}-zone10-servers1.2"
+        type: subnet
+      - name: "{{site2}}-zone10-servers1.2"
+        type: subnet
+      - name: "{{site1}}-zone10-servers1.3"
+        type: subnet
+      - name: "{{site2}}-zone10-servers1.3"
+        type: subnet
+      - name: "{{site1}}-zone10-unused"
+        type: subnet
+      - name: "zone10-network"
+        type: container
+        children:
+          - name: "{{site1}} localvips"
+            type: subnet
+          - name: "{{site1}} network"
+            type: container
+          - name: "{{site2}} localvips"
+            type: subnet
+          - name: "{{site2}} network"
+            type: subnet
+
+  - name: "zone11"
+    type: container
+    children:
+      - name: "{{site1}}-zone11-servers1.1"
+        type: subnet
+      - name: "{{site2}}-zone11-servers1.1"
+        type: subnet
+      - name: "{{site1}}-zone11-servers1.2"
+        type: subnet
+      - name: "{{site2}}-zone11-servers1.2"
+        type: subnet
+      - name: "{{site1}}-zone11-servers1.3"
+        type: subnet
+      - name: "{{site2}}-zone11-servers1.3"
+        type: subnet
+      - name: "{{site1}}-zone11-unused"
+        type: subnet
+      - name: "zone11-network"
+        type: container
+        children:
+          - name: "{{site1}} localvips"
+            type: subnet
+          - name: "{{site1}} network"
+            type: container
+          - name: "{{site2}} localvips"
+            type: subnet
+          - name: "{{site2}} network"
+            type: subnet
+
+  - name: "zone12"
+    type: container
+    children:
+      - name: "{{site1}}-zone12-servers1.1"
+        type: subnet
+      - name: "{{site2}}-zone12-servers1.1"
+        type: subnet
+      - name: "{{site1}}-zone12-servers1.2"
+        type: subnet
+      - name: "{{site2}}-zone12-servers1.2"
+        type: subnet
+      - name: "{{site1}}-zone12-servers1.3"
+        type: subnet
+      - name: "{{site2}}-zone12-servers1.3"
+        type: subnet
+      - name: "{{site1}}-zone12-unused"
+        type: subnet
+      - name: "zone12-network"
+        type: container
+        children:
+          - name: "{{site1}} localvips"
+            type: subnet
+          - name: "{{site1}} network"
+            type: container
+          - name: "{{site2}} localvips"
+            type: subnet
+          - name: "{{site2}} network"
+            type: subnet
+
+  - name: "zone13"
+    type: container
+    children:
+      - name: "{{site1}}-zone13-servers1.1"
+        type: subnet
+      - name: "{{site2}}-zone13-servers1.1"
+        type: subnet
+      - name: "{{site1}}-zone13-servers1.2"
+        type: subnet
+      - name: "{{site2}}-zone13-servers1.2"
+        type: subnet
+      - name: "{{site1}}-zone13-servers1.3"
+        type: subnet
+      - name: "{{site2}}-zone13-servers1.3"
+        type: subnet
+      - name: "{{site1}}-zone13-unused"
+        type: subnet
+      - name: "zone13-network"
+        type: container
+        children:
+          - name: "{{site1}} localvips"
+            type: subnet
+          - name: "{{site1}} network"
+            type: container
+          - name: "{{site2}} localvips"
+            type: subnet
+          - name: "{{site2}} network"
+            type: subnet
+
+  - name: "zone14"
+    type: container
+    children:
+      - name: "{{site1}}-zone14-servers1.1"
+        type: subnet
+      - name: "{{site2}}-zone14-servers1.1"
+        type: subnet
+      - name: "{{site1}}-zone14-servers1.2"
+        type: subnet
+      - name: "{{site2}}-zone14-servers1.2"
+        type: subnet
+      - name: "{{site1}}-zone14-servers1.3"
+        type: subnet
+      - name: "{{site2}}-zone14-servers1.3"
+        type: subnet
+      - name: "{{site1}}-zone14-unused"
+        type: subnet
+      - name: "zone14-network"
+        type: container
+        children:
+          - name: "{{site1}} localvips"
+            type: subnet
+          - name: "{{site1}} network"
+            type: container
+          - name: "{{site2}} localvips"
+            type: subnet
+          - name: "{{site2}} network"
+            type: subnet
+
+  - name: "zone15"
+    type: container
+    children:
+      - name: "{{site1}}-zone15-servers1.1"
+        type: subnet
+      - name: "{{site2}}-zone15-servers1.1"
+        type: subnet
+      - name: "{{site1}}-zone15-servers1.2"
+        type: subnet
+      - name: "{{site2}}-zone15-servers1.2"
+        type: subnet
+      - name: "{{site1}}-zone15-servers1.3"
+        type: subnet
+      - name: "{{site2}}-zone15-servers1.3"
+        type: subnet
+      - name: "{{site1}}-zone15-unused"
+        type: subnet
+      - name: "zone15-network"
+        type: container
+        children:
+          - name: "{{site1}} localvips"
+            type: subnet
+          - name: "{{site1}} network"
+            type: container
+          - name: "{{site2}} localvips"
+            type: subnet
+          - name: "{{site2}} network"
+            type: subnet
+
+  - name: "zone16"
+    type: container
+    children:
+      - name: "{{site1}}-zone16-servers1.1"
+        type: subnet
+      - name: "{{site2}}-zone16-servers1.1"
+        type: subnet
+      - name: "{{site1}}-zone16-servers1.2"
+        type: subnet
+      - name: "{{site2}}-zone16-servers1.2"
+        type: subnet
+      - name: "{{site1}}-zone16-servers1.3"
+        type: subnet
+      - name: "{{site2}}-zone16-servers1.3"
+        type: subnet
+      - name: "{{site1}}-zone16-unused"
+        type: subnet
+      - name: "zone16-network"
+        type: container
+        children:
+          - name: "{{site1}} localvips"
+            type: subnet
+          - name: "{{site1}} network"
+            type: container
+          - name: "{{site2}} localvips"
+            type: subnet
+          - name: "{{site2}} network"
+            type: subnet

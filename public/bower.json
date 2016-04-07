@@ -1,0 +1,23 @@
+{
+  "name": "subnetter",
+  "authors": [
+    "Bradley A. Thornton <bradley.thornton@starbucks.com>"
+  ],
+  "description": "Make pretty pictures",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-animate": "^1.5.3",
+    "angular-ui-ace": "bower"
+  }
+}
