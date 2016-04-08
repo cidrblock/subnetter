@@ -8,8 +8,8 @@
 
 .node circle {
   fill: #fff;
-  stroke: steelblue;
-  stroke-width: 1.5px;
+  stroke: black;
+  stroke-width: 1px;
 }
 
 .node text {
@@ -48,24 +48,83 @@ var diagonal = d3.svg.diagonal()
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.right + margin.left)
     .attr("height", height + margin.top + margin.bottom)
-  .append("g")
+    .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var root = JSON.parse(JSON.stringify(window.opener.jsonData));
 
-  root.x0 = height / 2;
-  root.y0 = 0;
+var answer = new Array()
 
-  function collapse(d) {
-    if (d.children) {
-      d._children = d.children;
-      d._children.forEach(collapse);
-      d.children = null;
+function js_traverse(o) {
+    if (o.hasOwnProperty("type")) {
+      answer.push(o.type);
     }
-  }
+    var type = typeof o
+    if (type == "object") {
+        for (var key in o) {
+            js_traverse(o[key], answer)
+        }
+    }
+}
 
-  root.children.forEach(collapse);
-  update(root);
+js_traverse(root);
+var types = ([...new Set(answer)]);
+var colors = d3.scale.category20();
+colors.domain(types);
+
+function colorize(d) {
+  if (d.type) {
+    d.color = colors(d.type)
+  }
+  if (d.children) {
+    d.children.forEach(colorize);
+  }
+}
+
+colorize(root)
+
+var tx = 25
+var ty = 20
+for (i = 0; i < types.length; i++) {
+  svg.append('text').text(types[i])
+    .attr("x", 0 - margin.left + tx)
+    .attr("y", 0 - margin.top + ty)
+    .style('font', '10px sans-serif')
+    .attr("dy", `${i*2}em`);
+  svg.append('circle')
+    .attr("cx", 0 - margin.left + tx - 10)
+    .attr("cy", (0 - margin.top + ty - 3) + (i*20))
+    .attr("r", 4.5)
+    .style("fill", colors(types[i]))
+    .style("stroke", "black")
+    .style("stroke-width", "1px");
+}
+
+var border=1;
+var bordercolor='gray';
+var rectangle = svg.append("rect")
+  .attr("x", 0 - margin.left + 5)
+  .attr("y", 0 - margin.top + 5)
+  .attr("width", 100)
+  .attr("height", types.length * 20 + 5)
+  .attr("fill", "transparent")
+  .attr("border",border)
+  .style("stroke", bordercolor);
+
+root.x0 = height / 2;
+root.y0 = 0;
+
+function collapse(d) {
+  if (d.children) {
+    d._children = d.children;
+    d._children.forEach(collapse);
+    d.children = null;
+  }
+}
+
+root.children.forEach(collapse);
+update(root);
+
 
 d3.select(self.frameElement).style("height", "95vh");
 
@@ -90,7 +149,8 @@ function update(source) {
 
   nodeEnter.append("circle")
       .attr("r", 1e-6)
-      .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+      //.style("fill-opacity", function(d) { return d._children ? "1" : ".5"; })
+      .style("fill", function(d) {return d.color} );
 
   nodeEnter.append("text")
       .attr("class", "text")
@@ -103,7 +163,7 @@ function update(source) {
   nodeEnter.append("text")
       .attr("class", "value")
       .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
-      .attr("dy", "2em")
+      .attr("dy", "1.25em")
       .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
       .text(function(d) { return `${d.network} (${d.ips})`; })
       .style("fill-opacity", 1e-6)
@@ -117,7 +177,8 @@ function update(source) {
 
   nodeUpdate.select("circle")
       .attr("r", 4.5)
-      .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+      //.style("fill-opacity", function(d) { return d._children ? "1" : ".7"; })
+      .style("fill", function(d) {return d.color} );
 
   nodeUpdate.select("text.value")
       .style("fill-opacity", 1);

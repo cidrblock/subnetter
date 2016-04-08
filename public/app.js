@@ -61,7 +61,7 @@ function subnets(str, array) {
     hash.ips = Math.pow(2, 32 - (mask + pow2))
     if ( i > array.length - 1) {
       hash.name = "unused";
-      hash.type = "container";
+      hash.type = "unused";
     } else {
       hash.name = array[i].name;
       hash.type = array[i].type;
