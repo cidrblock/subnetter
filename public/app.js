@@ -53,7 +53,6 @@ function subnets(str, array) {
   var pow2 = Math.ceil(Math.log(array.length)/Math.log(2))
   var result = new Array();
 
-  console.log(pow2)
   for (var i = 0; i < Math.pow(2, pow2) ; i++) {
     var newbinary = (binary.replaceAt(mask,padLeft(i.toString(2),pow2)));
     var hash = {}

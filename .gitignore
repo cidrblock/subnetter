@@ -34,4 +34,4 @@ node_modules
 config/runtime.yaml
 
 # bower
-public/bower_components/*
+bower_components
