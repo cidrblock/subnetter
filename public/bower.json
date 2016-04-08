@@ -19,6 +19,7 @@
   "dependencies": {
     "angular-animate": "^1.5.3",
     "angular-ui-ace": "bower",
-    "d3": "^3.5.16"
+    "d3": "^3.5.16",
+    "bootstrap-css-only": "^3.3.6"
   }
 }
