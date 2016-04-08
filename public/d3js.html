@@ -25,7 +25,8 @@
 
 </style>
 <body>
-<script src="//d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" src="bower_components/d3/d3.min.js"></script>
+
 <script>
 
 var w = window.innerWidth
@@ -68,7 +69,7 @@ function js_traverse(o) {
 }
 
 js_traverse(root);
-var types = ([...new Set(answer)]);
+var types = ([...new Set(answer)]).sort();
 var colors = d3.scale.category20();
 colors.domain(types);
 
@@ -83,10 +84,15 @@ function colorize(d) {
 
 colorize(root)
 
+function capitalize(s)
+{
+    return s && s[0].toUpperCase() + s.slice(1);
+}
+
 var tx = 25
 var ty = 20
 for (i = 0; i < types.length; i++) {
-  svg.append('text').text(types[i])
+  svg.append('text').text(capitalize(types[i]))
     .attr("x", 0 - margin.left + tx)
     .attr("y", 0 - margin.top + ty)
     .style('font', '10px sans-serif')
@@ -105,7 +111,7 @@ var bordercolor='gray';
 var rectangle = svg.append("rect")
   .attr("x", 0 - margin.left + 5)
   .attr("y", 0 - margin.top + 5)
-  .attr("width", 100)
+  .attr("width", 150)
   .attr("height", types.length * 20 + 5)
   .attr("fill", "transparent")
   .attr("border",border)
