@@ -2,14 +2,15 @@
 
 Subnetter is a simple network visualization and IP schema design aid.  Given a yaml file describing the hierarchy of the network and it's subnets, a resulting json file will be created and a d3.js visualization.
 
+![screenshot](https://github.com/cidrblock/subnetter/raw/master/screenshot.png)
+
+
 ## Try it now
 
 http://ipv4sub.net
 
 1. Paste this in as a template
-2. Click [convert]
-3. Click [render]
-4. Fine tune the yaml and repeat 
+
 
 ```yaml
 name: "My network design"   # The name of the root node
@@ -27,7 +28,9 @@ spec:
     - name: "{{site}}-{{location}}-servers-4"
       type: subnet
 ```
-
+2. Click [convert]
+3. Click [render]
+4. Fine tune the yaml and repeat
 
 
 ## Getting Started
