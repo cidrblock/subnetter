@@ -2,6 +2,34 @@
 
 Subnetter is a simple network visualization and IP schema design aid.  Given a yaml file describing the hierarchy of the network and it's subnets, a resulting json file will be created and a d3.js visualization.
 
+## Try it now
+
+http://ipv4sub.net
+
+1. Paste this in as a template
+2. Click [convert]
+3. Click [render]
+4. Fine tune the yaml and repeat 
+
+```yaml
+name: "My network design"   # The name of the root node
+root: 10.200.0.0/22         # The root network to subnet
+type: dc aggregate network  # The type (used in the legend)
+site: East Coast DC         # A variable to be used later
+location: Washington, DC    # Another variable to be used later
+spec:
+    - name: "{{site}}-{{location}}-servers-1"
+      type: subnet
+    - name: "{{site}}-{{location}}-servers-2"
+      type: subnet
+    - name: "{{site}}-{{location}}-servers-3"
+      type: subnet
+    - name: "{{site}}-{{location}}-servers-4"
+      type: subnet
+```
+
+
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
