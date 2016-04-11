@@ -35,3 +35,6 @@ config/runtime.yaml
 
 # bower
 bower_components
+
+# rancher
+rancher
