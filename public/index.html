@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="appName">
+<html ng-app="subnetter">
 <head>
     <!-- META -->
     <meta charset="utf-8">
@@ -8,42 +8,15 @@
     <title>subnetter</title>
 
     <link rel="stylesheet" href="css/vendor.css">
-
-    <style>
-      html                    {
-                                overflow-y:scroll;
-                                height: 100vh;
-                              }
-      body                    {
-                                padding-top:1vh;
-                                height: 100vh;
-                              }
-      .form-group             { margin-bottom: 5px; }
-      .ace_editor             {
-                              border: 1px solid lightgray;
-                              height: 95vh;
-                              width: 100%;
-                            }
-    .jsoneditor .menu       {
-                              background-color: #D5DDF6;
-                              border-bottom: 1px solid #97B0F8;
-                            }
-    .row                    {
-                              margin-left: 0px;
-                              margin-right: 0px;
-                            }
-    </style>
-
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <script type="text/javascript" src="js/vendor.js"></script>
     <script src="js-yaml.min.js"></script>
     <script src="app.js"></script>
 
-
-
 </head>
 <body ng-controller="mainController">
-    <div class="container-fluid">
       <uib-alert class="col-sm-6 col-sm-offset-3" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
         <span ng-bind-html="alert.msg"></span>
       </uib-alert>
@@ -51,7 +24,7 @@
         <div class="col-sm-6">
           <div class="row">
             <big><strong>Template</strong></big>
-            <button type="submit" class="btn btn-primary btn-xs pull-right" ng-click="do(value)">
+            <button type="submit" class="btn btn-black btn-xs pull-right" ng-click="do(value)">
                <span class="glyphicon glyphicon glyphicon-repeat" aria-hidden="true"></span> convert
             </button>
           </div>
@@ -62,9 +35,14 @@
         <div class="col-sm-6">
           <div class="row">
               <big><strong>json</strong></big>
-              <button type="submit" class="btn btn-primary btn-xs pull-right" ng-click="opend3js()">
-                 <span class="glyphicon glyphicon glyphicon-new-window" aria-hidden="true"></span> render
-              </button>
+              <div class="btn-toolbar pull-right">
+                <a href="http://github.com/cidrblock/subnetter" class="btn btn-black btn-xs">
+                  <span class="fa fa-github"></span> Github
+                </a>
+                <button type="submit" class="btn btn-black btn-xs" ng-click="opend3js()">
+                   <span class="glyphicon glyphicon glyphicon-new-window" aria-hidden="true"></span> render
+                </button>
+              </div>
           </div>
           <div class="row">
             <div ui-ace="acejsonOptions" ng-model="acejson"></div>
@@ -77,20 +55,10 @@
 <script>
 
 window.onerror = function(msg, url, line, col, error) {
-   // Note that col & error are new to the HTML 5 spec and may not be
-   // supported in every browser.  It worked for me in Chrome.
    var extra = !col ? '' : '\ncolumn: ' + col;
    extra += !error ? '' : '\nerror: ' + error;
-
-   // You can view the information in an alert to see things working like this:
    alert("Error: " + msg + "\nurl: " + url + "\nline: " + line + extra);
-
-   // TODO: Report this error via ajax so you can keep track
-   //       of what pages have JS issues
-
    var suppressErrorAlert = true;
-   // If you return true, then error alerts (like in older versions of
-   // Internet Explorer) will be suppressed.
    return suppressErrorAlert;
 };
 
@@ -106,16 +74,58 @@ function uniques(arr) {
     }
 }
 
-
 angular
-    .module("appName", ['ui.bootstrap', 'ui.ace'])
+    .module("subnetter", ['ui.bootstrap', 'ui.ace'])
     .controller("mainController", mainController);
 
 mainController.$inject = ["$scope", "$http", "$sce", "$log", "$window"];
 
 function mainController($scope, $http, $sce, $log, $window) {
   $scope.design = "";
-  $scope.acedata ='';
+  $scope.acedata = `
+  site1: Seattle, WA
+  site2: Portland, OR
+  site3: Denver, CO
+  site4: New York, NY
+  site5: Tampa, FL
+
+  adminblock: &adminblock
+    - name: management systems
+      type: subnet
+    - name: loopback addresses
+      type: subnet
+
+
+  office: &office
+    - name: Users
+      type: subnet
+    - name: Phones
+      type: subnet
+    - name: Network Admin
+      type: admin block
+      children: *adminblock
+
+
+  name: "Sample network design"   # The name of the root node
+  root: 10.200.0.0/20             # The root network to subnet
+  type: WAN                       # The type (used in the legend)
+  spec:
+      - name: "{{site1}}"
+        type: container
+        children: *office
+      - name: "{{site2}}"
+        type: container
+        children: *office
+      - name: "{{site3}}"
+        type: container
+        children: *office
+      - name: "{{site4}}"
+        type: container
+        children: *office
+      - name: "{{site5}}"
+        type: container
+        children: *office
+  `;
   $scope.acejson ='';
   $scope.acejsonOptions = {
     onLoad: function (_ace) {
@@ -169,4 +179,16 @@ function mainController($scope, $http, $sce, $log, $window) {
 };
 
 </script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-76258645-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
 </html>
